@@ -1,3 +1,90 @@
-# Java-Projects
-This repository consist of coding work done by @thenikhilnanda related to Java programming.
+import java.util.Scanner;
 
+class Player {
+  private String name;
+  private String position;
+  private int age;
+  private int goals;
+
+  public Player(String name, String position, int age, int goals) {
+    this.name = name;
+    this.position = position;
+    this.age = age;
+    this.goals = goals;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public String getPosition() {
+    return this.position;
+  }
+
+  public int getAge() {
+    return this.age;
+  }
+
+  public int getGoals() {
+    return this.goals;
+  }
+}
+
+class Team {
+  private String name;
+  private Player[] players;
+
+  public Team(String name, Player[] players) {
+    this.name = name;
+    this.players = players;
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public Player[] getPlayers() {
+    return this.players;
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+
+    Team[] teams = new Team[] {
+      new Team("Barcelona", new Player[] {
+        new Player("Lionel Messi", "Forward", 33, 40),
+        new Player("Antoine Griezmann", "Forward", 29, 20),
+        new Player("Sergio Busquets", "Midfielder", 33, 2)
+      }),
+      new Team("Real Madrid", new Player[] {
+        new Player("Karim Benzema", "Forward", 33, 30),
+        new Player("Eden Hazard", "Forward", 30, 15),
+        new Player("Toni Kroos", "Midfielder", 31, 5)
+      })
+    };
+
+    System.out.println("Select a team:");
+    for (int i = 0; i < teams.length; i++) {
+      System.out.println(i + 1 + ". " + teams[i].getName());
+    }
+
+    int teamIndex = scanner.nextInt() - 1;
+    Team team = teams[teamIndex];
+
+    System.out.println("Select a player:");
+    Player[] players = team.getPlayers();
+    for (int i = 0; i < players.length; i++) {
+      System.out.println(i + 1 + ". " + players[i].getName());
+    }
+
+    int playerIndex = scanner.nextInt() - 1;
+    Player player = players[playerIndex];
+
+    System.out.println("Name: " + player.getName());
+    System.out.println("Position: " + player.getPosition());
+    System.out.println("Age: " + player.getAge());
+    System.out.println("Goals: " + player.getGoals());
+  }
+}
